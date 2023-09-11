@@ -1,0 +1,10 @@
+libmbfl/filters/mbfilter_tl_jisx0201_jisx0208.lo: \
+  /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/filters/mbfilter_tl_jisx0201_jisx0208.c \
+  /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/filters/mbfilter_tl_jisx0201_jisx0208.h \
+  /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/mbfl/mbfl_convert.h \
+  /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/mbfl/mbfl_defs.h \
+  /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/mbfl/mbfl_encoding.h \
+  /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/mbfl/mbfl_memory_device.h \
+  /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/mbfl/mbfl_string.h \
+  /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/mbfl/mbfl_language.h \
+  /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/filters/translit_kana_jisx0201_jisx0208.h
