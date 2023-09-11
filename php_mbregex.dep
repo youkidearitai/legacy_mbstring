@@ -1,6 +1,8 @@
-legacy_mbstring.lo: \
-  /Users/tekimen/src/php-src/ext/legacy_mbstring/legacy_mbstring.c \
-  config.h /Users/tekimen/php_master/include/php/main/php.h \
+php_mbregex.lo: \
+  /Users/tekimen/src/php-src/ext/legacy_mbstring/php_mbregex.c \
+  libmbfl/config.h \
+  /Users/tekimen/src/php-src/ext/legacy_mbstring/config.h \
+  /Users/tekimen/php_master/include/php/main/php.h \
   /Users/tekimen/php_master/include/php/main/php_version.h \
   /Users/tekimen/php_master/include/php/Zend/zend.h \
   /Users/tekimen/php_master/include/php/Zend/zend_types.h \
@@ -17,11 +19,11 @@ legacy_mbstring.lo: \
   /Users/tekimen/php_master/include/php/Zend/zend_alloc_sizes.h \
   /Users/tekimen/php_master/include/php/Zend/zend_llist.h \
   /Users/tekimen/php_master/include/php/Zend/zend_string.h \
+  /Users/tekimen/php_master/include/php/Zend/zend_gc.h \
+  /Users/tekimen/php_master/include/php/Zend/zend_hrtime.h \
   /Users/tekimen/php_master/include/php/Zend/zend_hash.h \
   /Users/tekimen/php_master/include/php/Zend/zend_sort.h \
   /Users/tekimen/php_master/include/php/Zend/zend_ast.h \
-  /Users/tekimen/php_master/include/php/Zend/zend_gc.h \
-  /Users/tekimen/php_master/include/php/Zend/zend_hrtime.h \
   /Users/tekimen/php_master/include/php/Zend/zend_variables.h \
   /Users/tekimen/php_master/include/php/Zend/zend_iterators.h \
   /Users/tekimen/php_master/include/php/Zend/zend_stream.h \
@@ -75,12 +77,9 @@ legacy_mbstring.lo: \
   /Users/tekimen/php_master/include/php/TSRM/TSRM.h \
   /Users/tekimen/php_master/include/php/Zend/zend_constants.h \
   /Users/tekimen/php_master/include/php/main/php_reentrancy.h \
+  /Users/tekimen/php_master/include/php/Zend/zend_smart_str.h \
   /Users/tekimen/php_master/include/php/ext/standard/info.h \
-  php_legacy_mbstring.h libmbfl/config.h \
-  /Users/tekimen/src/php-src/ext/legacy_mbstring/config.h \
-  /Users/tekimen/php_master/include/php/main/php_variables.h \
-  /Users/tekimen/php_master/include/php/main/SAPI.h legacy_mbstring.h \
-  libmbfl/mbfl/mbfilter.h \
+  php_mbregex.h mbstring.h libmbfl/mbfl/mbfilter.h \
   /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/mbfl/mbfl_defs.h \
   /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/mbfl/mbfl_consts.h \
   /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/mbfl/mbfl_encoding.h \
@@ -89,20 +88,6 @@ legacy_mbstring.lo: \
   /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/mbfl/mbfl_convert.h \
   /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/mbfl/mbfl_memory_device.h \
   /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/mbfl/mbfl_ident.h \
-  /Users/tekimen/php_master/include/php/ext/standard/php_string.h \
-  /Users/tekimen/php_master/include/php/ext/random/php_random.h \
-  /Users/tekimen/php_master/include/php/ext/standard/php_mail.h \
-  /Users/tekimen/php_master/include/php/ext/standard/exec.h \
-  /Users/tekimen/php_master/include/php/ext/standard/url.h \
-  /Users/tekimen/php_master/include/php/ext/pcre/php_pcre.h \
-  /Users/tekimen/php_master/include/php/ext/pcre/pcre2lib/pcre2.h \
-  libmbfl/mbfl/mbfilter_8bit.h \
-  /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl/mbfl/mbfilter.h \
-  libmbfl/mbfl/mbfilter_pass.h libmbfl/mbfl/mbfilter_wchar.h \
-  libmbfl/filters/mbfilter_ascii.h libmbfl/filters/mbfilter_base64.h \
-  libmbfl/filters/mbfilter_qprint.h libmbfl/filters/mbfilter_ucs4.h \
-  libmbfl/filters/mbfilter_utf8.h \
-  libmbfl/filters/mbfilter_tl_jisx0201_jisx0208.h \
-  /Users/tekimen/php_master/include/php/main/rfc1867.h \
-  /Users/tekimen/php_master/include/php/main/php_content_types.h \
-  php_unicode.h mb_gpc.h php_mbregex.h legacy_mbstring_arginfo.h
+  /Users/tekimen/php_master/include/php/main/SAPI.h \
+  libmbfl/filters/mbfilter_utf8.h php_onig_compat.h \
+  /opt/homebrew/Cellar/oniguruma/6.9.8/include/oniguruma.h

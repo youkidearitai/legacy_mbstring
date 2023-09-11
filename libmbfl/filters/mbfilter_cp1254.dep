@@ -16,11 +16,11 @@ libmbfl/filters/mbfilter_cp1254.lo: \
   /Users/tekimen/php_master/include/php/Zend/zend_alloc_sizes.h \
   /Users/tekimen/php_master/include/php/Zend/zend_llist.h \
   /Users/tekimen/php_master/include/php/Zend/zend_string.h \
+  /Users/tekimen/php_master/include/php/Zend/zend_gc.h \
+  /Users/tekimen/php_master/include/php/Zend/zend_hrtime.h \
   /Users/tekimen/php_master/include/php/Zend/zend_hash.h \
   /Users/tekimen/php_master/include/php/Zend/zend_sort.h \
   /Users/tekimen/php_master/include/php/Zend/zend_ast.h \
-  /Users/tekimen/php_master/include/php/Zend/zend_gc.h \
-  /Users/tekimen/php_master/include/php/Zend/zend_hrtime.h \
   /Users/tekimen/php_master/include/php/Zend/zend_variables.h \
   /Users/tekimen/php_master/include/php/Zend/zend_iterators.h \
   /Users/tekimen/php_master/include/php/Zend/zend_stream.h \
