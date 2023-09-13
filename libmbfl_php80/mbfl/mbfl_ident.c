@@ -229,7 +229,6 @@ int mbfl_identify_filter_init2(mbfl_identify_filter *filter, const mbfl_encoding
 	filter->filter_ctor = vtbl->filter_ctor;
 	filter->filter_function = vtbl->filter_function;
 
-    printf("1\n");
 	/* constructor */
 	(*filter->filter_ctor)(filter);
 

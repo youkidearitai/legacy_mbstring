@@ -1,8 +1,0 @@
-libmbfl_php80/filters/mbfilter_tl_jisx0201_jisx0208.lo: \
-  /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl_php80/filters/mbfilter_tl_jisx0201_jisx0208.c \
-  /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl_php80/filters/mbfilter_tl_jisx0201_jisx0208.h \
-  libmbfl_php80/mbfl/mbfl_convert.h libmbfl_php80/mbfl/mbfl_defs.h \
-  libmbfl_php80/mbfl/mbfl_encoding.h \
-  libmbfl_php80/mbfl/mbfl_memory_device.h \
-  libmbfl_php80/mbfl/mbfl_string.h libmbfl_php80/mbfl/mbfl_language.h \
-  /Users/tekimen/src/php-src/ext/legacy_mbstring/libmbfl_php80/filters/translit_kana_jisx0201_jisx0208.h

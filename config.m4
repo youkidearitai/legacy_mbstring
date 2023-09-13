@@ -36,6 +36,15 @@ AC_DEFUN([PHP_MBSTRING_EXTENSION], [
     PHP_ADD_BUILD_DIR([$ext_builddir/$dir], 1)
   done
 
+  out="php_config.h"
+
+  if test "$ext_shared" != "no" && test -f "$ext_builddir/config.h.in"; then
+    out="$abs_builddir/config.h"
+  fi
+
+  cat > $ext_builddir/libmbfl_php80/config.h <<EOF
+#include "$out"
+EOF
 
   PHP_MBSTRING_ADD_INSTALL_HEADERS([legacy_mbstring.h])
   PHP_INSTALL_HEADERS([ext/legacy_mbstring], [$LEGACY_PHP_MBSTRING_INSTALL_HEADERS])
