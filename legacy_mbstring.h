@@ -39,7 +39,7 @@
 #	define MBSTRING_API /* nothing special */
 #endif
 
-#include "libmbfl/mbfl/mbfilter.h"
+#include "libmbfl_php80/mbfl/mbfilter.h"
 #include "SAPI.h"
 
 #define PHP_MBSTRING_API 20021024

@@ -27,7 +27,7 @@
 #include "php_legacy_mbstring.h"
 
 /* {{{ includes */
-#include "libmbfl/config.h"
+#include "libmbfl_php80/config.h"
 #include "php.h"
 #include "php_ini.h"
 #include "php_variables.h"
@@ -40,15 +40,15 @@
 #include "ext/standard/info.h"
 #include "ext/pcre/php_pcre.h"
 
-#include "libmbfl/mbfl/mbfilter_8bit.h"
-#include "libmbfl/mbfl/mbfilter_pass.h"
-#include "libmbfl/mbfl/mbfilter_wchar.h"
-#include "libmbfl/filters/mbfilter_ascii.h"
-#include "libmbfl/filters/mbfilter_base64.h"
-#include "libmbfl/filters/mbfilter_qprint.h"
-#include "libmbfl/filters/mbfilter_ucs4.h"
-#include "libmbfl/filters/mbfilter_utf8.h"
-#include "libmbfl/filters/mbfilter_tl_jisx0201_jisx0208.h"
+#include "libmbfl_php80/mbfl/mbfilter_8bit.h"
+#include "libmbfl_php80/mbfl/mbfilter_pass.h"
+#include "libmbfl_php80/mbfl/mbfilter_wchar.h"
+#include "libmbfl_php80/filters/mbfilter_ascii.h"
+#include "libmbfl_php80/filters/mbfilter_base64.h"
+#include "libmbfl_php80/filters/mbfilter_qprint.h"
+#include "libmbfl_php80/filters/mbfilter_ucs4.h"
+#include "libmbfl_php80/filters/mbfilter_utf8.h"
+#include "libmbfl_php80/filters/mbfilter_tl_jisx0201_jisx0208.h"
 
 #include "php_variables.h"
 #include "php_globals.h"

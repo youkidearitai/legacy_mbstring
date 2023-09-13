@@ -25,7 +25,7 @@
 #include "ext/standard/info.h"
 #include "php_mbregex.h"
 #include "mbstring.h"
-#include "libmbfl/filters/mbfilter_utf8.h"
+#include "libmbfl_php80/filters/mbfilter_utf8.h"
 
 #include "php_onig_compat.h" /* must come prior to the oniguruma header */
 #include <oniguruma.h>

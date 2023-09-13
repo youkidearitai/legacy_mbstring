@@ -26,136 +26,119 @@ AC_DEFUN([PHP_MBSTRING_ADD_CFLAG], [
 ])
 
 AC_DEFUN([PHP_MBSTRING_ADD_INSTALL_HEADERS], [
-  PHP_MBSTRING_INSTALL_HEADERS="$PHP_MBSTRING_INSTALL_HEADERS $1"
+  LEGACY_PHP_MBSTRING_INSTALL_HEADERS="$PHP_MBSTRING_INSTALL_HEADERS $1"
 ])
 
 AC_DEFUN([PHP_MBSTRING_EXTENSION], [
   PHP_NEW_EXTENSION(legacy_mbstring, $PHP_MBSTRING_BASE_SOURCES $PHP_MBSTRING_SOURCES, $ext_shared,, $PHP_MBSTRING_CFLAGS -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1)
-  PHP_SUBST(MBSTRING_SHARED_LIBADD)
 
   for dir in $PHP_MBSTRING_EXTRA_BUILD_DIRS; do
     PHP_ADD_BUILD_DIR([$ext_builddir/$dir], 1)
   done
 
-  for dir in $PHP_MBSTRING_EXTRA_INCLUDES; do
-    PHP_ADD_INCLUDE([$ext_srcdir/$dir])
-    PHP_ADD_INCLUDE([$ext_builddir/$dir])
-  done
 
-  out="php_config.h"
-
-  if test "$ext_shared" != "no" && test -f "$ext_builddir/config.h.in"; then
-    out="$abs_builddir/config.h"
-  fi
-
-  cat > $ext_builddir/libmbfl/config.h <<EOF
-#include "$out"
-EOF
-
-  PHP_MBSTRING_ADD_INSTALL_HEADERS([mbstring.h])
-  PHP_INSTALL_HEADERS([ext/legacy_mbstring], [$PHP_MBSTRING_INSTALL_HEADERS])
+  PHP_MBSTRING_ADD_INSTALL_HEADERS([legacy_mbstring.h])
+  PHP_INSTALL_HEADERS([ext/legacy_mbstring], [$LEGACY_PHP_MBSTRING_INSTALL_HEADERS])
 ])
 
 AC_DEFUN([PHP_MBSTRING_SETUP_LIBMBFL], [
   dnl
   dnl Bundled libmbfl is required and can not be disabled
   dnl
-  PHP_MBSTRING_ADD_BUILD_DIR([libmbfl])
-  PHP_MBSTRING_ADD_BUILD_DIR([libmbfl/mbfl])
-  PHP_MBSTRING_ADD_BUILD_DIR([libmbfl/filters])
-  PHP_MBSTRING_ADD_BUILD_DIR([libmbfl/nls])
-  PHP_MBSTRING_ADD_INCLUDE([libmbfl])
-  PHP_MBSTRING_ADD_INCLUDE([libmbfl/mbfl])
+  PHP_MBSTRING_ADD_BUILD_DIR([libmbfl_php80])
+  PHP_MBSTRING_ADD_BUILD_DIR([libmbfl_php80/mbfl])
+  PHP_MBSTRING_ADD_BUILD_DIR([libmbfl_php80/filters])
+  PHP_MBSTRING_ADD_BUILD_DIR([libmbfl_php80/nls])
 
   PHP_MBSTRING_ADD_SOURCES([
-    libmbfl/filters/html_entities.c
-    libmbfl/filters/mbfilter_7bit.c
-    libmbfl/filters/mbfilter_ascii.c
-    libmbfl/filters/mbfilter_base64.c
-    libmbfl/filters/mbfilter_big5.c
-    libmbfl/filters/mbfilter_byte2.c
-    libmbfl/filters/mbfilter_byte4.c
-    libmbfl/filters/mbfilter_cp1251.c
-    libmbfl/filters/mbfilter_cp1252.c
-    libmbfl/filters/mbfilter_cp1254.c
-    libmbfl/filters/mbfilter_cp5022x.c
-    libmbfl/filters/mbfilter_cp51932.c
-    libmbfl/filters/mbfilter_cp850.c
-    libmbfl/filters/mbfilter_cp866.c
-    libmbfl/filters/mbfilter_cp932.c
-    libmbfl/filters/mbfilter_cp936.c
-    libmbfl/filters/mbfilter_gb18030.c
-    libmbfl/filters/mbfilter_euc_cn.c
-    libmbfl/filters/mbfilter_euc_jp.c
-    libmbfl/filters/mbfilter_euc_jp_2004.c
-    libmbfl/filters/mbfilter_euc_jp_win.c
-    libmbfl/filters/mbfilter_euc_kr.c
-    libmbfl/filters/mbfilter_euc_tw.c
-    libmbfl/filters/mbfilter_htmlent.c
-    libmbfl/filters/mbfilter_hz.c
-    libmbfl/filters/mbfilter_iso2022_jp_ms.c
-    libmbfl/filters/mbfilter_iso2022jp_2004.c
-    libmbfl/filters/mbfilter_iso2022jp_mobile.c
-    libmbfl/filters/mbfilter_iso2022_kr.c
-    libmbfl/filters/mbfilter_iso8859_1.c
-    libmbfl/filters/mbfilter_iso8859_10.c
-    libmbfl/filters/mbfilter_iso8859_13.c
-    libmbfl/filters/mbfilter_iso8859_14.c
-    libmbfl/filters/mbfilter_iso8859_15.c
-    libmbfl/filters/mbfilter_iso8859_16.c
-    libmbfl/filters/mbfilter_iso8859_2.c
-    libmbfl/filters/mbfilter_iso8859_3.c
-    libmbfl/filters/mbfilter_iso8859_4.c
-    libmbfl/filters/mbfilter_iso8859_5.c
-    libmbfl/filters/mbfilter_iso8859_6.c
-    libmbfl/filters/mbfilter_iso8859_7.c
-    libmbfl/filters/mbfilter_iso8859_8.c
-    libmbfl/filters/mbfilter_iso8859_9.c
-    libmbfl/filters/mbfilter_jis.c
-    libmbfl/filters/mbfilter_koi8r.c
-    libmbfl/filters/mbfilter_armscii8.c
-    libmbfl/filters/mbfilter_qprint.c
-    libmbfl/filters/mbfilter_sjis.c
-    libmbfl/filters/mbfilter_sjis_open.c
-    libmbfl/filters/mbfilter_sjis_mobile.c
-    libmbfl/filters/mbfilter_sjis_mac.c
-    libmbfl/filters/mbfilter_sjis_2004.c
-    libmbfl/filters/mbfilter_tl_jisx0201_jisx0208.c
-    libmbfl/filters/mbfilter_ucs2.c
-    libmbfl/filters/mbfilter_ucs4.c
-    libmbfl/filters/mbfilter_uhc.c
-    libmbfl/filters/mbfilter_utf16.c
-    libmbfl/filters/mbfilter_utf32.c
-    libmbfl/filters/mbfilter_utf7.c
-    libmbfl/filters/mbfilter_utf7imap.c
-    libmbfl/filters/mbfilter_utf8.c
-    libmbfl/filters/mbfilter_utf8_mobile.c
-    libmbfl/filters/mbfilter_uuencode.c
-    libmbfl/filters/mbfilter_koi8u.c
-    libmbfl/mbfl/mbfilter.c
-    libmbfl/mbfl/mbfilter_8bit.c
-    libmbfl/mbfl/mbfilter_pass.c
-    libmbfl/mbfl/mbfilter_wchar.c
-    libmbfl/mbfl/mbfl_convert.c
-    libmbfl/mbfl/mbfl_encoding.c
-    libmbfl/mbfl/mbfl_filter_output.c
-    libmbfl/mbfl/mbfl_ident.c
-    libmbfl/mbfl/mbfl_language.c
-    libmbfl/mbfl/mbfl_memory_device.c
-    libmbfl/mbfl/mbfl_string.c
-    libmbfl/nls/nls_de.c
-    libmbfl/nls/nls_en.c
-    libmbfl/nls/nls_ja.c
-    libmbfl/nls/nls_kr.c
-    libmbfl/nls/nls_neutral.c
-    libmbfl/nls/nls_ru.c
-    libmbfl/nls/nls_uni.c
-    libmbfl/nls/nls_zh.c
-    libmbfl/nls/nls_hy.c
-    libmbfl/nls/nls_tr.c
-    libmbfl/nls/nls_ua.c
+    libmbfl_php80/filters/html_entities.c
+    libmbfl_php80/filters/mbfilter_7bit.c
+    libmbfl_php80/filters/mbfilter_ascii.c
+    libmbfl_php80/filters/mbfilter_base64.c
+    libmbfl_php80/filters/mbfilter_big5.c
+    libmbfl_php80/filters/mbfilter_byte2.c
+    libmbfl_php80/filters/mbfilter_byte4.c
+    libmbfl_php80/filters/mbfilter_cp1251.c
+    libmbfl_php80/filters/mbfilter_cp1252.c
+    libmbfl_php80/filters/mbfilter_cp1254.c
+    libmbfl_php80/filters/mbfilter_cp5022x.c
+    libmbfl_php80/filters/mbfilter_cp51932.c
+    libmbfl_php80/filters/mbfilter_cp850.c
+    libmbfl_php80/filters/mbfilter_cp866.c
+    libmbfl_php80/filters/mbfilter_cp932.c
+    libmbfl_php80/filters/mbfilter_cp936.c
+    libmbfl_php80/filters/mbfilter_gb18030.c
+    libmbfl_php80/filters/mbfilter_euc_cn.c
+    libmbfl_php80/filters/mbfilter_euc_jp.c
+    libmbfl_php80/filters/mbfilter_euc_jp_2004.c
+    libmbfl_php80/filters/mbfilter_euc_jp_win.c
+    libmbfl_php80/filters/mbfilter_euc_kr.c
+    libmbfl_php80/filters/mbfilter_euc_tw.c
+    libmbfl_php80/filters/mbfilter_htmlent.c
+    libmbfl_php80/filters/mbfilter_hz.c
+    libmbfl_php80/filters/mbfilter_iso2022_jp_ms.c
+    libmbfl_php80/filters/mbfilter_iso2022jp_2004.c
+    libmbfl_php80/filters/mbfilter_iso2022jp_mobile.c
+    libmbfl_php80/filters/mbfilter_iso2022_kr.c
+    libmbfl_php80/filters/mbfilter_iso8859_1.c
+    libmbfl_php80/filters/mbfilter_iso8859_10.c
+    libmbfl_php80/filters/mbfilter_iso8859_13.c
+    libmbfl_php80/filters/mbfilter_iso8859_14.c
+    libmbfl_php80/filters/mbfilter_iso8859_15.c
+    libmbfl_php80/filters/mbfilter_iso8859_16.c
+    libmbfl_php80/filters/mbfilter_iso8859_2.c
+    libmbfl_php80/filters/mbfilter_iso8859_3.c
+    libmbfl_php80/filters/mbfilter_iso8859_4.c
+    libmbfl_php80/filters/mbfilter_iso8859_5.c
+    libmbfl_php80/filters/mbfilter_iso8859_6.c
+    libmbfl_php80/filters/mbfilter_iso8859_7.c
+    libmbfl_php80/filters/mbfilter_iso8859_8.c
+    libmbfl_php80/filters/mbfilter_iso8859_9.c
+    libmbfl_php80/filters/mbfilter_jis.c
+    libmbfl_php80/filters/mbfilter_koi8r.c
+    libmbfl_php80/filters/mbfilter_armscii8.c
+    libmbfl_php80/filters/mbfilter_qprint.c
+    libmbfl_php80/filters/mbfilter_sjis.c
+    libmbfl_php80/filters/mbfilter_sjis_open.c
+    libmbfl_php80/filters/mbfilter_sjis_mobile.c
+    libmbfl_php80/filters/mbfilter_sjis_mac.c
+    libmbfl_php80/filters/mbfilter_sjis_2004.c
+    libmbfl_php80/filters/mbfilter_tl_jisx0201_jisx0208.c
+    libmbfl_php80/filters/mbfilter_ucs2.c
+    libmbfl_php80/filters/mbfilter_ucs4.c
+    libmbfl_php80/filters/mbfilter_uhc.c
+    libmbfl_php80/filters/mbfilter_utf16.c
+    libmbfl_php80/filters/mbfilter_utf32.c
+    libmbfl_php80/filters/mbfilter_utf7.c
+    libmbfl_php80/filters/mbfilter_utf7imap.c
+    libmbfl_php80/filters/mbfilter_utf8.c
+    libmbfl_php80/filters/mbfilter_utf8_mobile.c
+    libmbfl_php80/filters/mbfilter_uuencode.c
+    libmbfl_php80/filters/mbfilter_koi8u.c
+    libmbfl_php80/mbfl/mbfilter.c
+    libmbfl_php80/mbfl/mbfilter_8bit.c
+    libmbfl_php80/mbfl/mbfilter_pass.c
+    libmbfl_php80/mbfl/mbfilter_wchar.c
+    libmbfl_php80/mbfl/mbfl_convert.c
+    libmbfl_php80/mbfl/mbfl_encoding.c
+    libmbfl_php80/mbfl/mbfl_filter_output.c
+    libmbfl_php80/mbfl/mbfl_ident.c
+    libmbfl_php80/mbfl/mbfl_language.c
+    libmbfl_php80/mbfl/mbfl_memory_device.c
+    libmbfl_php80/mbfl/mbfl_string.c
+    libmbfl_php80/nls/nls_de.c
+    libmbfl_php80/nls/nls_en.c
+    libmbfl_php80/nls/nls_ja.c
+    libmbfl_php80/nls/nls_kr.c
+    libmbfl_php80/nls/nls_neutral.c
+    libmbfl_php80/nls/nls_ru.c
+    libmbfl_php80/nls/nls_uni.c
+    libmbfl_php80/nls/nls_zh.c
+    libmbfl_php80/nls/nls_hy.c
+    libmbfl_php80/nls/nls_tr.c
+    libmbfl_php80/nls/nls_ua.c
   ])
-  PHP_MBSTRING_ADD_INSTALL_HEADERS([libmbfl/config.h libmbfl/mbfl/eaw_table.h libmbfl/mbfl/mbfilter.h libmbfl/mbfl/mbfilter_8bit.h libmbfl/mbfl/mbfilter_pass.h libmbfl/mbfl/mbfilter_wchar.h libmbfl/mbfl/mbfl_consts.h libmbfl/mbfl/mbfl_convert.h libmbfl/mbfl/mbfl_defs.h libmbfl/mbfl/mbfl_encoding.h libmbfl/mbfl/mbfl_filter_output.h libmbfl/mbfl/mbfl_ident.h libmbfl/mbfl/mbfl_language.h libmbfl/mbfl/mbfl_memory_device.h libmbfl/mbfl/mbfl_string.h])
+  dnl PHP_MBSTRING_ADD_INSTALL_HEADERS([libmbfl_php80/config.h libmbfl_php80/mbfl/eaw_table.h libmbfl_php80/mbfl/mbfilter.h libmbfl_php80/mbfl/mbfilter_8bit.h libmbfl_php80/mbfl/mbfilter_pass.h libmbfl_php80/mbfl/mbfilter_wchar.h libmbfl_php80/mbfl/mbfl_consts.h libmbfl_php80/mbfl/mbfl_convert.h libmbfl_php80/mbfl/mbfl_defs.h libmbfl_php80/mbfl/mbfl_encoding.h libmbfl_php80/mbfl/mbfl_filter_output.h libmbfl_php80/mbfl/mbfl_ident.h libmbfl_php80/mbfl/mbfl_language.h libmbfl_php80/mbfl/mbfl_memory_device.h libmbfl_php80/mbfl/mbfl_string.h])
 ])
 
 
