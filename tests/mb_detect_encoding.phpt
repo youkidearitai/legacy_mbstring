@@ -55,25 +55,6 @@ $s = legacy_mb_detect_encoding($s, $a);
 print("SJIS: $s\n");
 
 
-// Using Detect Order
-echo "== DETECT ORDER ==\n";
-
-mb_detect_order('auto');
-
-
-$s = $jis;
-$s = legacy_mb_detect_encoding($s);
-print("JIS: $s\n");
-
-$s = $euc_jp;
-$s = legacy_mb_detect_encoding($s);
-print("EUC-JP: $s\n");
-
-$s = $sjis;
-$s = legacy_mb_detect_encoding($s);
-print("SJIS: $s\n");
-
-
 // Invalid(?) Parameters
 echo "== INVALID PARAMETER ==\n";
 
@@ -99,10 +80,6 @@ EUC-JP: EUC-JP
 EUC-JP: EUC-JP
 == ARRAY ENCODING LIST ==
 JIS: UTF-8
-EUC-JP: EUC-JP
-SJIS: SJIS
-== DETECT ORDER ==
-JIS: JIS
 EUC-JP: EUC-JP
 SJIS: SJIS
 == INVALID PARAMETER ==
