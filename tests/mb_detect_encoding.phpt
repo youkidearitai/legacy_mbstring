@@ -1,7 +1,7 @@
 --TEST--
-mb_detect_encoding()
+legacy_mb_detect_encoding()
 --SKIPIF--
-<?php extension_loaded('mbstring') or die('skip mbstring not available'); ?>
+<?php extension_loaded('legacy_mbstring') or die('skip mbstring not available'); ?>
 --INI--
 mbstring.language=Japanese
 --FILE--
@@ -19,19 +19,19 @@ $euc_jp = '日本語テキストです。01234５６７８９。';
 // Note: For some reason it complains, results are different. Not researched.
 echo "== BASIC TEST ==\n";
 $s = $sjis;
-$s = mb_detect_encoding($s, 'SJIS');
+$s = legacy_mb_detect_encoding($s, 'SJIS');
 print("SJIS: $s\n");
 
 $s = $jis;
-$s = mb_detect_encoding($s, 'JIS');
+$s = legacy_mb_detect_encoding($s, 'JIS');
 print("JIS: $s\n");
 
 $s = $euc_jp;
-$s = mb_detect_encoding($s, 'UTF-8,EUC-JP,JIS');
+$s = legacy_mb_detect_encoding($s, 'UTF-8,EUC-JP,JIS');
 print("EUC-JP: $s\n");
 
 $s = $euc_jp;
-$s = mb_detect_encoding($s, 'JIS,EUC-JP');
+$s = legacy_mb_detect_encoding($s, 'JIS,EUC-JP');
 print("EUC-JP: $s\n");
 
 
@@ -43,15 +43,15 @@ $a = array(0=>'UTF-8',1=>'EUC-JP', 2=>'SJIS', 3=>'JIS');
 
 // Note: Due to detect order, detected as UTF-8
 $s = $jis;
-$s = mb_detect_encoding($s, $a);
+$s = legacy_mb_detect_encoding($s, $a);
 print("JIS: $s\n");
 
 $s = $euc_jp;
-$s = mb_detect_encoding($s, $a);
+$s = legacy_mb_detect_encoding($s, $a);
 print("EUC-JP: $s\n");
 
 $s = $sjis;
-$s = mb_detect_encoding($s, $a);
+$s = legacy_mb_detect_encoding($s, $a);
 print("SJIS: $s\n");
 
 
@@ -62,30 +62,30 @@ mb_detect_order('auto');
 
 
 $s = $jis;
-$s = mb_detect_encoding($s);
+$s = legacy_mb_detect_encoding($s);
 print("JIS: $s\n");
 
 $s = $euc_jp;
-$s = mb_detect_encoding($s);
+$s = legacy_mb_detect_encoding($s);
 print("EUC-JP: $s\n");
 
 $s = $sjis;
-$s = mb_detect_encoding($s);
+$s = legacy_mb_detect_encoding($s);
 print("SJIS: $s\n");
 
 
 // Invalid(?) Parameters
 echo "== INVALID PARAMETER ==\n";
 
-$s = mb_detect_encoding(1234, 'EUC-JP');
+$s = legacy_mb_detect_encoding(1234, 'EUC-JP');
 print("INT: $s\n"); // EUC-JP
 
-$s = mb_detect_encoding('', 'EUC-JP');
+$s = legacy_mb_detect_encoding('', 'EUC-JP');
 print("EUC-JP: $s\n");  // SJIS
 
 $s = $euc_jp;
 try {
-    var_dump(mb_detect_encoding($s, 'BAD'));
+    var_dump(legacy_mb_detect_encoding($s, 'BAD'));
 } catch (\ValueError $e) {
     echo $e->getMessage() . \PHP_EOL;
 }
@@ -108,4 +108,4 @@ SJIS: SJIS
 == INVALID PARAMETER ==
 INT: EUC-JP
 EUC-JP: EUC-JP
-mb_detect_encoding(): Argument #2 ($encodings) contains invalid encoding "BAD"
+legacy_mb_detect_encoding(): Argument #2 ($encodings) contains invalid encoding "BAD"
