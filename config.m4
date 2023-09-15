@@ -236,7 +236,7 @@ if test "$PHP_LEGACY_MBSTRING" != "no"; then
   dnl In case of no dependencies
   AC_DEFINE(HAVE_LEGACY_MBSTRING, 1, [ Have legacy_mbstring support ])
 
-  PHP_NEW_EXTENSION(legacy_mbstring, legacy_mbstring.c, $ext_shared)
+  PHP_MBSTRING_ADD_BASE_SOURCES([legacy_mbstring.c])
   dnl libmbfl is required
   PHP_MBSTRING_SETUP_LIBMBFL
   PHP_MBSTRING_EXTENSION
