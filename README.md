@@ -10,7 +10,7 @@ examples:
 - [mb_detect_encoding() results for UTF-7 differ between PHP 8.0 and 8.1 (if UTF-7 is present in the encodings list and the string contains '+' character) #10192](https://github.com/php/php-src/issues/10192)
 - [mb_detect_encoding() detects UTF-8 emoji byte sequence as ISO-8859-1 since PHP 8.1 #7871](https://github.com/php/php-src/issues/7871)
 
-This function should to moving forward. However, some PHP users left behind old behavior. This fact is created that motivate it.
+mbstring should to moving forward. However, some PHP users left behind old behavior. This fact is created that motivate it.
 
 ## Instllation
 
