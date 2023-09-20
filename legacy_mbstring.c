@@ -75,10 +75,10 @@
 	ZEND_PARSE_PARAMETERS_END()
 #endif
 
-ZEND_DECLARE_MODULE_GLOBALS(mbstring)
+ZEND_DECLARE_MODULE_GLOBALS(legacy_mbstring)
 
-static PHP_GINIT_FUNCTION(mbstring);
-static PHP_GSHUTDOWN_FUNCTION(mbstring);
+static PHP_GINIT_FUNCTION(legacy_mbstring);
+static PHP_GSHUTDOWN_FUNCTION(legacy_mbstring);
 
 /* {{{ static _php_mb_ini_mbstring_internal_encoding_set */
 static int _php_mb_ini_mbstring_internal_encoding_set(const char *new_value, size_t new_value_length)
@@ -203,61 +203,61 @@ static const php_mb_nls_ident_list php_mb_default_identify_list[] = {
 /* }}} */
 
 /* {{{ module global initialize handler */
-static PHP_GINIT_FUNCTION(mbstring)
+static PHP_GINIT_FUNCTION(legacy_mbstring)
 {
 #if defined(COMPILE_DL_MBSTRING) && defined(ZTS)
 ZEND_TSRMLS_CACHE_UPDATE();
 #endif
 
-	mbstring_globals->language = mbfl_no_language_uni;
-	mbstring_globals->internal_encoding = NULL;
-	mbstring_globals->current_internal_encoding = mbstring_globals->internal_encoding;
-	mbstring_globals->http_output_encoding = &mbfl_encoding_pass;
-	mbstring_globals->current_http_output_encoding = &mbfl_encoding_pass;
-	mbstring_globals->http_input_identify = NULL;
-	mbstring_globals->http_input_identify_get = NULL;
-	mbstring_globals->http_input_identify_post = NULL;
-	mbstring_globals->http_input_identify_cookie = NULL;
-	mbstring_globals->http_input_identify_string = NULL;
-	mbstring_globals->http_input_list = NULL;
-	mbstring_globals->http_input_list_size = 0;
-	mbstring_globals->detect_order_list = NULL;
-	mbstring_globals->detect_order_list_size = 0;
-	mbstring_globals->current_detect_order_list = NULL;
-	mbstring_globals->current_detect_order_list_size = 0;
-	mbstring_globals->default_detect_order_list = (enum mbfl_no_encoding *) php_mb_default_identify_list_neut;
-	mbstring_globals->default_detect_order_list_size = sizeof(php_mb_default_identify_list_neut) / sizeof(php_mb_default_identify_list_neut[0]);
-	mbstring_globals->filter_illegal_mode = MBFL_OUTPUTFILTER_ILLEGAL_MODE_CHAR;
-	mbstring_globals->filter_illegal_substchar = 0x3f;	/* '?' */
-	mbstring_globals->current_filter_illegal_mode = MBFL_OUTPUTFILTER_ILLEGAL_MODE_CHAR;
-	mbstring_globals->current_filter_illegal_substchar = 0x3f;	/* '?' */
-	mbstring_globals->illegalchars = 0;
-	mbstring_globals->encoding_translation = 0;
-	mbstring_globals->strict_detection = 0;
-	mbstring_globals->outconv = NULL;
-	mbstring_globals->http_output_conv_mimetypes = NULL;
+	legacy_mbstring_globals->language = mbfl_no_language_uni;
+	legacy_mbstring_globals->internal_encoding = NULL;
+	legacy_mbstring_globals->current_internal_encoding = legacy_mbstring_globals->internal_encoding;
+	legacy_mbstring_globals->http_output_encoding = &mbfl_encoding_pass;
+	legacy_mbstring_globals->current_http_output_encoding = &mbfl_encoding_pass;
+	legacy_mbstring_globals->http_input_identify = NULL;
+	legacy_mbstring_globals->http_input_identify_get = NULL;
+	legacy_mbstring_globals->http_input_identify_post = NULL;
+	legacy_mbstring_globals->http_input_identify_cookie = NULL;
+	legacy_mbstring_globals->http_input_identify_string = NULL;
+	legacy_mbstring_globals->http_input_list = NULL;
+	legacy_mbstring_globals->http_input_list_size = 0;
+	legacy_mbstring_globals->detect_order_list = NULL;
+	legacy_mbstring_globals->detect_order_list_size = 0;
+	legacy_mbstring_globals->current_detect_order_list = NULL;
+	legacy_mbstring_globals->current_detect_order_list_size = 0;
+	legacy_mbstring_globals->default_detect_order_list = (enum mbfl_no_encoding *) php_mb_default_identify_list_neut;
+	legacy_mbstring_globals->default_detect_order_list_size = sizeof(php_mb_default_identify_list_neut) / sizeof(php_mb_default_identify_list_neut[0]);
+	legacy_mbstring_globals->filter_illegal_mode = MBFL_OUTPUTFILTER_ILLEGAL_MODE_CHAR;
+	legacy_mbstring_globals->filter_illegal_substchar = 0x3f;	/* '?' */
+	legacy_mbstring_globals->current_filter_illegal_mode = MBFL_OUTPUTFILTER_ILLEGAL_MODE_CHAR;
+	legacy_mbstring_globals->current_filter_illegal_substchar = 0x3f;	/* '?' */
+	legacy_mbstring_globals->illegalchars = 0;
+	legacy_mbstring_globals->encoding_translation = 0;
+	legacy_mbstring_globals->strict_detection = 0;
+	legacy_mbstring_globals->outconv = NULL;
+	legacy_mbstring_globals->http_output_conv_mimetypes = NULL;
 #ifdef HAVE_MBREGEX
-	mbstring_globals->mb_regex_globals = php_mb_regex_globals_alloc();
+	legacy_mbstring_globals->mb_regex_globals = php_mb_regex_globals_alloc();
 #endif
-	mbstring_globals->last_used_encoding_name = NULL;
-	mbstring_globals->last_used_encoding = NULL;
-	mbstring_globals->internal_encoding_set = 0;
-	mbstring_globals->http_output_set = 0;
-	mbstring_globals->http_input_set = 0;
+	legacy_mbstring_globals->last_used_encoding_name = NULL;
+	legacy_mbstring_globals->last_used_encoding = NULL;
+	legacy_mbstring_globals->internal_encoding_set = 0;
+	legacy_mbstring_globals->http_output_set = 0;
+	legacy_mbstring_globals->http_input_set = 0;
 }
 /* }}} */
 
 /* {{{ PHP_GSHUTDOWN_FUNCTION */
-static PHP_GSHUTDOWN_FUNCTION(mbstring)
+static PHP_GSHUTDOWN_FUNCTION(legacy_mbstring)
 {
-	if (mbstring_globals->http_input_list) {
-		free(ZEND_VOIDP(mbstring_globals->http_input_list));
+	if (legacy_mbstring_globals->http_input_list) {
+		free(ZEND_VOIDP(legacy_mbstring_globals->http_input_list));
 	}
-	if (mbstring_globals->detect_order_list) {
-		free(ZEND_VOIDP(mbstring_globals->detect_order_list));
+	if (legacy_mbstring_globals->detect_order_list) {
+		free(ZEND_VOIDP(legacy_mbstring_globals->detect_order_list));
 	}
 #ifdef HAVE_MBREGEX
-	php_mb_regex_globals_free(mbstring_globals->mb_regex_globals);
+	php_mb_regex_globals_free(legacy_mbstring_globals->mb_regex_globals);
 #endif
 }
 /* }}} */

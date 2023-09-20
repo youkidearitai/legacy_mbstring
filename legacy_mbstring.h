@@ -47,11 +47,11 @@
 extern zend_module_entry mbstring_module_entry;
 #define phpext_mbstring_ptr &mbstring_module_entry
 
-PHP_MINIT_FUNCTION(mbstring);
-PHP_MSHUTDOWN_FUNCTION(mbstring);
-PHP_RINIT_FUNCTION(mbstring);
-PHP_RSHUTDOWN_FUNCTION(mbstring);
-PHP_MINFO_FUNCTION(mbstring);
+PHP_MINIT_FUNCTION(legacy_mbstring);
+PHP_MSHUTDOWN_FUNCTION(legacy_mbstring);
+PHP_RINIT_FUNCTION(legacy_mbstring);
+PHP_RSHUTDOWN_FUNCTION(legacy_mbstring);
+PHP_MINFO_FUNCTION(legacy_mbstring);
 
 MBSTRING_API char *php_mb_safe_strrchr_ex(const char *s, unsigned int c,
                                     size_t nbytes, const mbfl_encoding *enc);
@@ -71,7 +71,7 @@ MBSTRING_API size_t php_mb_mbchar_bytes(const char *s);
 MBSTRING_API size_t php_mb_stripos(int mode, const char *old_haystack, size_t old_haystack_len, const char *old_needle, size_t old_needle_len, zend_long offset, const mbfl_encoding *encoding);
 MBSTRING_API int php_mb_check_encoding(const char *input, size_t length, const mbfl_encoding *encoding);
 
-ZEND_BEGIN_MODULE_GLOBALS(mbstring)
+ZEND_BEGIN_MODULE_GLOBALS(legacy_mbstring)
 	char *internal_encoding_name;
 	const mbfl_encoding *internal_encoding;
 	const mbfl_encoding *current_internal_encoding;
@@ -113,9 +113,9 @@ ZEND_BEGIN_MODULE_GLOBALS(mbstring)
 #ifdef HAVE_MBREGEX
     zend_long regex_retry_limit;
 #endif
-ZEND_END_MODULE_GLOBALS(mbstring)
+ZEND_END_MODULE_GLOBALS(legacy_mbstring)
 
-#define MBSTRG(v) ZEND_MODULE_GLOBALS_ACCESSOR(mbstring, v)
+#define MBSTRG(v) ZEND_MODULE_GLOBALS_ACCESSOR(legacy_mbstring, v)
 
 #if defined(ZTS) && defined(COMPILE_DL_MBSTRING)
 ZEND_TSRMLS_CACHE_EXTERN()

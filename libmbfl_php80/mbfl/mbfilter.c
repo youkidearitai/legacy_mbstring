@@ -484,7 +484,7 @@ mbfl_convert_encoding(
  * identify encoding
  */
 const mbfl_encoding *
-mbfl_identify_encoding(mbfl_string *string, const mbfl_encoding **elist, int elistsz, int strict)
+legacy_mbfl_identify_encoding(mbfl_string *string, const mbfl_encoding **elist, int elistsz, int strict)
 {
 	int i, num, bad;
 	size_t n;
