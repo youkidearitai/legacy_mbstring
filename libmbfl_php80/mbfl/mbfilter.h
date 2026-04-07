@@ -178,7 +178,8 @@ mbfl_convert_encoding(mbfl_string *string, mbfl_string *result, const mbfl_encod
  * identify encoding
  */
 MBFLAPI extern const mbfl_encoding *
-mbfl_identify_encoding(mbfl_string *string, const mbfl_encoding **elist, int elistsz, int strict);
+legacy_mbfl_identify_encoding(mbfl_string *string, const mbfl_encoding **elist, int elistsz, int strict);
+#define mbfl_identify_encoding legacy_mbfl_identify_encoding
 
 /* Lengths -1 through -16 are reserved for error return values */
 static inline int mbfl_is_error(size_t len) {

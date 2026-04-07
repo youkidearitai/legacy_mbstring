@@ -51,7 +51,7 @@
 #endif /* MBFL_DLL_EXPORT */
 #else
 #if defined(__GNUC__) && __GNUC__ >= 4
-#define MBFLAPI __attribute__((visibility("default")))
+#define MBFLAPI __attribute__((visibility("hidden")))
 #else
 #define MBFLAPI
 #endif /* defined(__GNUC__) && __GNUC__ >= 4 */
