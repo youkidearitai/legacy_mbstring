@@ -1,0 +1,24 @@
+{
+    "name": "legacy_mbstring/mb_detect_encoding",
+    "type": "php-ext",
+    "license": "LGPL 2.1",
+    "description": "Old behavior of mbstring(mb_detect_encoding) (PHP 8.0)",
+    "require": {
+        "php": "^8.3"
+    },
+    "support": {
+        "source": "https://github.com/youkidearitai/legacy_mbstring",
+        "issues": "https://github.com/youkidearitai/legacy_mbstring/issues"
+    },
+    "php-ext": {
+        "extension-name": "legacy_mbstring",
+        "configure-options": [
+            {
+                "name": "enable-legacy_mbstring",
+                "needs-value": false,
+                "description": "Old behavior of mbstring support (this suggest shared only)"
+            }
+        ]
+    }
+}
+
