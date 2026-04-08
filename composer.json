@@ -1,7 +1,7 @@
 {
     "name": "legacy_mbstring/mb_detect_encoding",
     "type": "php-ext",
-    "license": "LGPL 2.1",
+    "license": " LGPL-2.1-only",
     "description": "Old behavior of mbstring(mb_detect_encoding) (PHP 8.0)",
     "require": {
         "php": "^8.3"
